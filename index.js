@@ -1,10 +1,12 @@
+// DOTENV
+require("dotenv").config();
+
 // CRIA APLICAÇÃO USANDO EXPRESS
 const express = require("express");
 const { MongoClient, ObjectId } = require("mongodb");
 
 // Informações de acesso ao BANCO DE DADOS
-const dbUrl =
-  "mongodb+srv://admin:A57kAkg6eykAb9@cluster0.bn1bc7s.mongodb.net/";
+const dbUrl = process.env.DATABASE_URL;
 const dbName = "mongodb_intro_implementacao";
 
 // Função principal MAIN
@@ -86,7 +88,7 @@ async function main() {
     // if (!lista[id - 1]) {
     //   return res.status(404).send("ALERTA: Ítem não encontrado");
     // }
-    await collection.deleteOne({_id: new ObjectId(id)})
+    await collection.deleteOne({ _id: new ObjectId(id) });
     res.send("Ítem removido com sucesso: " + id);
   });
 
